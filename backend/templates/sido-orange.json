@@ -1,0 +1,57 @@
+{
+  "id": "sido-orange",
+  "name": "Sido Orange",
+  "description": "Fiche chaleureuse, accent orange, sections compactes.",
+  "colors": {
+    "primary": "#F97316",
+    "accent": "#FB7185",
+    "background": "#FFF7ED",
+    "text": "#111827"
+  },
+  "fields": [
+    {
+      "key": "title",
+      "label": "Titre",
+      "type": "text",
+      "required": true,
+      "placeholder": "Titre de l'œuvre",
+      "defaultStyle": { "fontFamily": "ui-serif", "fontSize": 22, "fontWeight": 700 }
+    },
+    {
+      "key": "author",
+      "label": "Auteur",
+      "type": "text",
+      "placeholder": "Nom de l'auteur",
+      "defaultStyle": { "fontFamily": "ui-sans-serif", "fontSize": 14, "fontWeight": 600 }
+    },
+    {
+      "key": "context",
+      "label": "Contexte / Résumé",
+      "type": "textarea",
+      "placeholder": "Quelques lignes de contexte + résumé…",
+      "defaultStyle": { "fontFamily": "ui-sans-serif", "fontSize": 12 }
+    },
+    {
+      "key": "themes",
+      "label": "Thèmes",
+      "type": "tags",
+      "placeholder": "ex: famille, mémoire, amour…",
+      "defaultStyle": { "fontFamily": "ui-sans-serif", "fontSize": 12 }
+    },
+    {
+      "key": "quotes",
+      "label": "Citations",
+      "type": "list",
+      "placeholder": "Une citation par ligne",
+      "defaultStyle": { "fontFamily": "ui-serif", "fontSize": 12 }
+    },
+    {
+      "key": "opinion",
+      "label": "Avis personnel",
+      "type": "textarea",
+      "placeholder": "Ce que tu en retiens, ce que tu recommandes…",
+      "defaultStyle": { "fontFamily": "ui-sans-serif", "fontSize": 12 }
+    }
+  ]
+}
+

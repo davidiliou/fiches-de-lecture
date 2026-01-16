@@ -1,0 +1,57 @@
+{
+  "id": "cahiers-mint",
+  "name": "Cahiers Mint",
+  "description": "Fiche claire, tons menthe, mise en page aérée type cahier.",
+  "colors": {
+    "primary": "#14B8A6",
+    "accent": "#22C55E",
+    "background": "#ECFDF5",
+    "text": "#0F172A"
+  },
+  "fields": [
+    {
+      "key": "title",
+      "label": "Titre",
+      "type": "text",
+      "required": true,
+      "placeholder": "Titre",
+      "defaultStyle": { "fontFamily": "ui-sans-serif", "fontSize": 24, "fontWeight": 800 }
+    },
+    {
+      "key": "author",
+      "label": "Auteur",
+      "type": "text",
+      "placeholder": "Auteur",
+      "defaultStyle": { "fontFamily": "ui-sans-serif", "fontSize": 13, "fontWeight": 600 }
+    },
+    {
+      "key": "characters",
+      "label": "Personnages",
+      "type": "list",
+      "placeholder": "Un personnage par ligne",
+      "defaultStyle": { "fontFamily": "ui-sans-serif", "fontSize": 12 }
+    },
+    {
+      "key": "summary",
+      "label": "Résumé",
+      "type": "textarea",
+      "placeholder": "Résumé court et clair…",
+      "defaultStyle": { "fontFamily": "ui-sans-serif", "fontSize": 12 }
+    },
+    {
+      "key": "structure",
+      "label": "Structure",
+      "type": "textarea",
+      "placeholder": "Plan, parties, éléments marquants…",
+      "defaultStyle": { "fontFamily": "ui-sans-serif", "fontSize": 12 }
+    },
+    {
+      "key": "takeaways",
+      "label": "Idées clés",
+      "type": "list",
+      "placeholder": "Une idée par ligne",
+      "defaultStyle": { "fontFamily": "ui-sans-serif", "fontSize": 12 }
+    }
+  ]
+}
+
