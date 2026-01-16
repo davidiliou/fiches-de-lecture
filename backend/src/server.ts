@@ -65,7 +65,12 @@ const INDEX_PATH = path.join(DATA_DIR, "index.json");
 
 async function ensureDirs() {
   await fs.mkdir(DOCUMENTS_DIR, { recursive: true });
-  await fs.mkdir(TEMPLATES_DIR, { recursive: true });
+  // En Docker on peut monter les templates en lecture seule.
+  try {
+    await fs.mkdir(TEMPLATES_DIR, { recursive: true });
+  } catch (e: any) {
+    if (e?.code !== "EROFS" && e?.code !== "EACCES") throw e;
+  }
 }
 
 async function readJsonFile<T>(filePath: string, fallback: T): Promise<T> {
