@@ -9,19 +9,48 @@ function fieldDefaultStyle(template: Template, key: string): FieldStyle {
   return (f?.defaultStyle || {}) as FieldStyle;
 }
 
+function parseMultiValue(raw: string, opts?: { keepTrailingEmpty?: boolean }): string[] {
+  // Autorise: séparateurs multi (retour ligne, virgule, point-virgule).
+  // Important (UX): en champ contrôlé, si l'utilisateur tape juste un séparateur
+  // (ex: Entrée pour passer à la ligne suivante), il faut préserver un item vide
+  // pour que le séparateur ne "disparaisse" pas au rerender.
+  const keepTrailingEmpty = Boolean(opts?.keepTrailingEmpty);
+  const endsWithSeparator = /[\r\n,;]\s*$/.test(raw);
+
+  const parts = raw.split(/[\r\n,;]+/).map((s) => s.trim());
+  const out = parts.filter(Boolean);
+  if (keepTrailingEmpty && endsWithSeparator) out.push("");
+  return out;
+}
+
+function normalizeMultiValue(v: unknown): string[] | undefined {
+  // Nettoyage pour la persistance: pas de valeurs vides dans les listes/tags.
+  if (Array.isArray(v)) {
+    const out: string[] = [];
+    for (const x of v) {
+      const s = typeof x === "string" ? x : x == null ? "" : String(x);
+      for (const part of s.split(/[\r\n,;]+/)) {
+        const t = part.trim();
+        if (t) out.push(t);
+      }
+    }
+    return out;
+  }
+  if (typeof v === "string") {
+    return v
+      .split(/[\r\n,;]+/)
+      .map((s) => s.trim())
+      .filter(Boolean);
+  }
+  return undefined;
+}
+
 function coerceFieldValue(field: TemplateField, raw: string): unknown {
   switch (field.type) {
     case "list":
-      // Autorise: séparateurs multi (retour ligne, virgule, point-virgule).
-      return raw
-        .split(/[\r\n,;]+/)
-        .map((s) => s.trim())
-        .filter(Boolean);
+      return parseMultiValue(raw, { keepTrailingEmpty: true });
     case "tags":
-      return raw
-        .split(/[\r\n,;]+/)
-        .map((s) => s.trim())
-        .filter(Boolean);
+      return parseMultiValue(raw, { keepTrailingEmpty: true });
     default:
       return raw;
   }
@@ -85,9 +114,17 @@ export default function Editor() {
     if (!id || !doc) return;
     try {
       setStatus("Sauvegarde…");
+      const sanitizedData: Record<string, unknown> = { ...doc.data };
+      if (template) {
+        for (const f of template.fields) {
+          if (f.type !== "list" && f.type !== "tags") continue;
+          const normalized = normalizeMultiValue(sanitizedData[f.key]);
+          if (normalized) sanitizedData[f.key] = normalized;
+        }
+      }
       await saveDocument(id, {
         title: doc.title,
-        data: doc.data,
+        data: sanitizedData,
         styles: doc.styles,
         theme: doc.theme
       });
