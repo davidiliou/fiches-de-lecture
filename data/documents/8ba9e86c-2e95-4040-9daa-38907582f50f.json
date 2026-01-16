@@ -3,13 +3,30 @@
   "title": "Nouvelle fiche",
   "templateId": "cahiers-mint",
   "createdAt": "2026-01-16T20:58:59.481Z",
-  "updatedAt": "2026-01-16T20:58:59.481Z",
-  "data": {},
-  "styles": {},
+  "updatedAt": "2026-01-16T21:06:42.116Z",
+  "data": {
+    "title": "test titre livre",
+    "author": "Victor hugo",
+    "characters": [
+      "Paulbfdgb"
+    ],
+    "summary": "Rsumé court et clair c'est bien",
+    "structure": "Quare talis improborum consensio non modo excusatione amicitiae tegenda non est sed potius supplicio omni vindicanda est, ut ne quis concessum putet amicum vel bellum patriae inferentem sequi; quod quidem, ut res ire coepit, haud scio an aliquando futurum sit. Mihi autem non minori curae est, qualis res publica post mortem meam futura, quam qualis hodie sit.\n\nQuare talis improborum consensio non modo excusatione amicitiae tegenda non est sed potius supplicio omni vindicanda est, ut ne quis concessum putet amicum vel bellum patriae inferentem sequi; quod quidem, ut res ire coepit, haud scio an aliquando futurum sit. Mihi autem non minori curae est, qualis res publica post mortem meam futura, quam qualis hodie sit.",
+    "takeaways": [
+      "Quare talis improborum consensio non modo excusatione amicitiae tegenda non est sed potius supplicio omni vindicanda est, ut ne quis concessum putet amicum vel bellum patriae inferentem sequi; quod quidem, ut res ire coepit, haud scio an aliquando futurum sit. Mihi autem non minori curae est, qualis res publica post mortem meam futura, quam qualis hodie sit."
+    ]
+  },
+  "styles": {
+    "takeaways": {
+      "fontFamily": "ui-serif",
+      "fontSize": 13,
+      "textColor": "#2255c3"
+    }
+  },
   "theme": {
-    "primary": "#14B8A6",
-    "accent": "#22C55E",
-    "background": "#ECFDF5",
+    "primary": "#fa0000",
+    "accent": "#4d5c52",
+    "background": "#1fb770",
     "text": "#0F172A"
   }
 }
