@@ -21,10 +21,22 @@ export function asString(v: unknown): string {
 }
 
 export function asStringList(v: unknown): string[] {
-  if (Array.isArray(v)) return v.map((x) => asString(x)).filter(Boolean);
+  if (Array.isArray(v)) {
+    // Compat: anciennes fiches où une "liste" était stockée comme ["a, b, c"]
+    // => on re-split chaque entrée.
+    const out: string[] = [];
+    for (const x of v) {
+      const s = asString(x);
+      for (const part of s.split(/[\r\n,;]+/)) {
+        const t = part.trim();
+        if (t) out.push(t);
+      }
+    }
+    return out;
+  }
   if (typeof v === "string") {
     return v
-      .split("\n")
+      .split(/[\r\n,;]+/)
       .map((s) => s.trim())
       .filter(Boolean);
   }
