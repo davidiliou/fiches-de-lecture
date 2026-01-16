@@ -20,6 +20,12 @@ Puis ouvrir:
 - Frontend: `http://localhost:5173`
 - API: `http://localhost:3000/api/templates`
 
+Si le port 3000 est déjà pris, tu peux changer le port hôte:
+
+```bash
+API_HOST_PORT=3001 docker compose up --build
+```
+
 ### Accès sur le réseau local
 L’app écoute sur `0.0.0.0`. Depuis un autre appareil du LAN, utiliser l’IP de la machine hôte, ex:
 - `http://192.168.1.10:5173`
