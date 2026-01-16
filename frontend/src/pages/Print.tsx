@@ -38,9 +38,11 @@ export default function Print() {
       <style>
         {`
           @page { size: A4; margin: 12mm; }
+          .sheet { box-shadow: 0 25px 50px -12px rgba(0,0,0,.55); }
           @media print {
             .no-print { display: none !important; }
             body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+            .sheet { box-shadow: none !important; }
           }
         `}
       </style>
@@ -59,7 +61,7 @@ export default function Print() {
           </Link>
           <button
             className="rounded-lg bg-white px-3 py-2 text-sm font-semibold text-slate-950 hover:bg-slate-200"
-            onClick={() => window.print()}
+            onClick={() => globalThis.print()}
           >
             Imprimer / Export PDF
           </button>
@@ -75,7 +77,7 @@ export default function Print() {
       {!doc || !template ? (
         <div className="no-print text-sm text-slate-300">Chargement…</div>
       ) : (
-        <div className="mx-auto w-[210mm] max-w-full bg-white p-0 text-black shadow-2xl shadow-black/40 print:shadow-none">
+        <div className="sheet mx-auto w-[210mm] max-w-full bg-white p-0 text-black">
           <div className="p-[12mm]">
             <Renderer doc={doc} template={template} />
           </div>
