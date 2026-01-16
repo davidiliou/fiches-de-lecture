@@ -12,13 +12,13 @@ function fieldDefaultStyle(template: Template, key: string): FieldStyle {
 function coerceFieldValue(field: TemplateField, raw: string): unknown {
   switch (field.type) {
     case "list":
-      return raw
-        .split("\n")
+      // Autorise: une ligne = un item, ou bien "a, b, c" si pas de retours ligne.
+      return (raw.includes("\n") ? raw.split(/\r?\n/) : raw.split(/[,;]+/))
         .map((s) => s.trim())
         .filter(Boolean);
     case "tags":
       return raw
-        .split(",")
+        .split(/[,;\n]+/)
         .map((s) => s.trim())
         .filter(Boolean);
     default:
