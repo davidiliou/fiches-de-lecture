@@ -4,7 +4,7 @@ services:
       context: ./backend
       dockerfile: Dockerfile
     ports:
-      - "3000:3000"
+      - "${API_HOST_PORT:-3000}:3000"
     environment:
       - NODE_ENV=development
       - DATA_DIR=/app/data
@@ -20,7 +20,7 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     ports:
-      - "5173:5173"
+      - "${WEB_HOST_PORT:-5173}:5173"
     environment:
       - VITE_API_BASE=/api
       - VITE_API_PROXY_TARGET=http://api:3000
