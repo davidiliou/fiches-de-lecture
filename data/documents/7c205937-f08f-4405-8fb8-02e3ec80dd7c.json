@@ -1,0 +1,15 @@
+{
+  "id": "7c205937-f08f-4405-8fb8-02e3ec80dd7c",
+  "title": "Nouvelle fiche",
+  "templateId": "sido-orange",
+  "createdAt": "2026-01-16T21:34:43.502Z",
+  "updatedAt": "2026-01-16T21:34:43.502Z",
+  "data": {},
+  "styles": {},
+  "theme": {
+    "primary": "#F97316",
+    "accent": "#FB7185",
+    "background": "#FFF7ED",
+    "text": "#111827"
+  }
+}

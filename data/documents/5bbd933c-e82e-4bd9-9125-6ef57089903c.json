@@ -1,0 +1,32 @@
+{
+  "id": "5bbd933c-e82e-4bd9-9125-6ef57089903c",
+  "title": "Fiche 2",
+  "templateId": "sido-vrilles",
+  "createdAt": "2026-01-16T21:32:35.049Z",
+  "updatedAt": "2026-01-16T21:34:18.137Z",
+  "data": {
+    "title": "Titre du livre",
+    "subtitle": "dsdfsdfg",
+    "keywords": [
+      "gdsfgdf-dfg-gdsfg-gdsfg"
+    ],
+    "writingContext": "gdsfgsdfgdsbsdbvdsfg",
+    "themes": [
+      "gdsg-f-bdsf"
+    ],
+    "structure": "dfgdsfgdfgdg\nDfgdsfG\nDfsG\n",
+    "linkToCourse": "gdsfgdsfgdsfg\nDfgdsfg"
+  },
+  "styles": {
+    "linkToCourse": {
+      "fontFamily": "\"Times New Roman\"",
+      "fontSize": 8
+    }
+  },
+  "theme": {
+    "primary": "#494646",
+    "accent": "#CF6B6B",
+    "background": "#CFE0CF",
+    "text": "#1F2D5A"
+  }
+}

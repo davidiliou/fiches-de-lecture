@@ -33,5 +33,33 @@
     "templateId": "sido-vrilles",
     "createdAt": "2026-01-16T21:28:18.562Z",
     "updatedAt": "2026-01-16T21:28:18.562Z"
+  },
+  {
+    "id": "5bbd933c-e82e-4bd9-9125-6ef57089903c",
+    "title": "Fiche 2",
+    "templateId": "sido-vrilles",
+    "createdAt": "2026-01-16T21:32:35.049Z",
+    "updatedAt": "2026-01-16T21:34:18.137Z"
+  },
+  {
+    "id": "7da70d4f-3247-4278-99d3-0b60214ed11a",
+    "title": "Nouvelle fiche",
+    "templateId": "cahiers-mint",
+    "createdAt": "2026-01-16T21:34:38.882Z",
+    "updatedAt": "2026-01-16T21:34:38.882Z"
+  },
+  {
+    "id": "7c205937-f08f-4405-8fb8-02e3ec80dd7c",
+    "title": "Nouvelle fiche",
+    "templateId": "sido-orange",
+    "createdAt": "2026-01-16T21:34:43.502Z",
+    "updatedAt": "2026-01-16T21:34:43.502Z"
+  },
+  {
+    "id": "c389b061-2920-4fbd-854b-b702a3093bf5",
+    "title": "Nouvelle fiche",
+    "templateId": "sido-vrilles",
+    "createdAt": "2026-01-16T21:35:26.403Z",
+    "updatedAt": "2026-01-16T21:35:26.403Z"
   }
 ]

@@ -1,0 +1,15 @@
+{
+  "id": "7da70d4f-3247-4278-99d3-0b60214ed11a",
+  "title": "Nouvelle fiche",
+  "templateId": "cahiers-mint",
+  "createdAt": "2026-01-16T21:34:38.882Z",
+  "updatedAt": "2026-01-16T21:34:38.882Z",
+  "data": {},
+  "styles": {},
+  "theme": {
+    "primary": "#14B8A6",
+    "accent": "#22C55E",
+    "background": "#ECFDF5",
+    "text": "#0F172A"
+  }
+}
