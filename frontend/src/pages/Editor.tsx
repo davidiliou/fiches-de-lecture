@@ -70,6 +70,67 @@ const FONT_CHOICES = [
   { label: "Times", value: "\"Times New Roman\"" }
 ];
 
+type ThemeColors = { primary: string; accent: string; background: string; text: string };
+
+type PalettePreset = { name: string; colors: [string, string, string, string, string] };
+
+const PALETTE_PRESETS: PalettePreset[] = [
+  { name: "Neutres & ocre", colors: ["#E5E7EB", "#F5F5F4", "#D6A537", "#B7791F", "#7C2D12"] },
+  { name: "Prune & vert doux", colors: ["#1F102A", "#B3002D", "#E6F0C2", "#7AAE52", "#8C4A4A"] },
+  { name: "Rose & menthe", colors: ["#C73C6E", "#E56F95", "#F2B7C7", "#B7E6E6", "#49A3A3"] },
+  { name: "Corail & cyan", colors: ["#3B0A0A", "#D36A4A", "#FFC36E", "#00C2D1", "#003A46"] },
+  { name: "Poudre & marine", colors: ["#CF6B6B", "#F3B0A8", "#CFE0CF", "#4B8C96", "#1F2D5A"] },
+  { name: "Pastel (bleu/rose)", colors: ["#F9F3C6", "#BFE3FF", "#F7C7D9", "#4F80BF", "#9FD3F2"] },
+  { name: "Saumon & lagon", colors: ["#FF9C93", "#F57A3A", "#204A52", "#79D6D1", "#1CC9C8"] },
+  { name: "Terre & sable", colors: ["#6A6258", "#EAD494", "#556B4D", "#C58A44", "#F4BE86"] },
+  { name: "Or & bleu", colors: ["#E3A81C", "#2E78C7", "#2F3B49", "#D8D3E0", "#A9936A"] },
+  { name: "Sapin & caramel", colors: ["#0F4B46", "#1F6E67", "#F2F7F5", "#FFE8A3", "#D19A5B"] }
+];
+
+function clamp01(x: number) {
+  return Math.max(0, Math.min(1, x));
+}
+
+function parseHexColor(hex: string): { r: number; g: number; b: number } | null {
+  const h = hex.trim();
+  const m = /^#([0-9a-fA-F]{6})$/.exec(h);
+  if (!m) return null;
+  const n = Number.parseInt(m[1], 16);
+  return { r: (n >> 16) & 255, g: (n >> 8) & 255, b: n & 255 };
+}
+
+function luma(hex: string): number | null {
+  const rgb = parseHexColor(hex);
+  if (!rgb) return null;
+  // Luma approximative 0..1 (suffisant pour trier clair/foncé)
+  const y = (0.2126 * rgb.r + 0.7152 * rgb.g + 0.0722 * rgb.b) / 255;
+  return clamp01(y);
+}
+
+function themeFromPalette(p: PalettePreset): ThemeColors {
+  const withLum = p.colors
+    .map((c) => ({ c, y: luma(c) }))
+    .map((x, idx) => ({ ...x, idx }))
+    .filter((x) => typeof x.y === "number") as Array<{ c: string; y: number; idx: number }>;
+
+  // Fallback si parsing impossible
+  if (withLum.length < 5) {
+    return { background: p.colors[1], text: p.colors[4], primary: p.colors[2], accent: p.colors[3] };
+  }
+
+  withLum.sort((a, b) => a.y - b.y); // du plus sombre au plus clair
+  const text = withLum[0].c;
+  const background = withLum.at(-1)?.c ?? p.colors[1];
+
+  const remaining = withLum.slice(1, -1);
+  // Choix simple: 2 couleurs du milieu pour primary/accent
+  remaining.sort((a, b) => a.y - b.y);
+  const midA = remaining[Math.floor((remaining.length - 1) / 2)]?.c ?? p.colors[2];
+  const midB = remaining[Math.ceil((remaining.length - 1) / 2)]?.c ?? p.colors[3];
+
+  return { background, text, primary: midA, accent: midB };
+}
+
 export default function Editor() {
   const { id } = useParams<{ id: string }>();
   const [doc, setDoc] = useState<DocumentModel | null>(null);
@@ -437,6 +498,62 @@ export default function Editor() {
 
             <div className="rounded-2xl border border-white/10 bg-white/5 p-4">
               <div className="mb-2 text-sm font-semibold">Couleurs du template</div>
+              <div className="mb-3">
+                <div className="mb-2 flex items-center justify-between gap-3">
+                  <div className="text-xs text-slate-300">Préréglages</div>
+                  <button
+                    className="rounded-lg border border-white/10 px-2 py-1 text-xs hover:bg-white/5"
+                    onClick={() => {
+                      setDoc((prev) =>
+                        prev
+                          ? {
+                              ...prev,
+                              theme: { ...template.colors }
+                            }
+                          : prev
+                      );
+                    }}
+                    type="button"
+                  >
+                    Réinitialiser
+                  </button>
+                </div>
+                <div className="flex gap-2 overflow-x-auto pb-1">
+                  {PALETTE_PRESETS.map((p) => (
+                    <button
+                      key={p.name}
+                      type="button"
+                      className="shrink-0 rounded-xl border border-white/10 bg-slate-950/20 px-3 py-2 text-left hover:bg-white/5"
+                      onClick={() => {
+                        const nextTheme = themeFromPalette(p);
+                        setDoc((prev) =>
+                          prev
+                            ? {
+                                ...prev,
+                                theme: { ...(prev.theme || {}), ...nextTheme }
+                              }
+                            : prev
+                        );
+                      }}
+                      title={`${p.name} — ${p.colors.join(" ")}`}
+                    >
+                      <div className="mb-1 flex gap-1">
+                        {p.colors.map((c) => (
+                          <span
+                            key={c}
+                            className="h-4 w-5 rounded border border-white/10"
+                            style={{ background: c }}
+                            aria-hidden="true"
+                          />
+                        ))}
+                      </div>
+                      <div className="max-w-[160px] truncate text-xs text-slate-200">
+                        {p.name}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
               <div className="grid grid-cols-2 gap-3">
                 {(["primary", "accent", "background", "text"] as const).map((k) => (
                   <label key={k} className="block">

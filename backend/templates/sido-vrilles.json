@@ -1,0 +1,92 @@
+{
+  "id": "sido-vrilles",
+  "name": "Sido & Vrilles (affiche)",
+  "description": "Template inspiré d’une fiche type affiche: bandeaux orange, encadrés pointillés, pastilles, sections Auteur/À lire.",
+  "colors": {
+    "primary": "#F59E0B",
+    "accent": "#FB923C",
+    "background": "#FFFBF5",
+    "text": "#1F2937"
+  },
+  "fields": [
+    {
+      "key": "title",
+      "label": "Titre",
+      "type": "text",
+      "required": true,
+      "placeholder": "Titre de l'œuvre",
+      "defaultStyle": { "fontFamily": "ui-serif", "fontSize": 28, "fontWeight": 800 }
+    },
+    {
+      "key": "subtitle",
+      "label": "Sous-titre",
+      "type": "text",
+      "placeholder": "Ex: L’autobiographie sensible",
+      "defaultStyle": { "fontFamily": "ui-sans-serif", "fontSize": 12, "fontWeight": 700 }
+    },
+    {
+      "key": "keywords",
+      "label": "Mots-clés (haut droit)",
+      "type": "tags",
+      "placeholder": "ex: autobiographie, nostalgie, nature…",
+      "defaultStyle": { "fontFamily": "ui-sans-serif", "fontSize": 10 }
+    },
+    {
+      "key": "writingContext",
+      "label": "Contexte d’écriture",
+      "type": "textarea",
+      "placeholder": "Quelques lignes pour situer l’œuvre…",
+      "defaultStyle": { "fontFamily": "ui-sans-serif", "fontSize": 12 }
+    },
+    {
+      "key": "themes",
+      "label": "Thèmes (pastilles)",
+      "type": "tags",
+      "placeholder": "ex: enfance, les sens, morale…",
+      "defaultStyle": { "fontFamily": "ui-sans-serif", "fontSize": 11 }
+    },
+    {
+      "key": "structure",
+      "label": "Structure",
+      "type": "textarea",
+      "placeholder": "Parties, étapes, points clés… (une ligne par item)",
+      "defaultStyle": { "fontFamily": "ui-sans-serif", "fontSize": 12 }
+    },
+    {
+      "key": "linkToCourse",
+      "label": "Lien avec le parcours",
+      "type": "textarea",
+      "placeholder": "Développe le lien avec le parcours / axes d’étude…",
+      "defaultStyle": { "fontFamily": "ui-sans-serif", "fontSize": 12 }
+    },
+    {
+      "key": "definitions",
+      "label": "Définition des termes (bandeau)",
+      "type": "textarea",
+      "placeholder": "Définition(s) importante(s), notions…",
+      "defaultStyle": { "fontFamily": "ui-sans-serif", "fontSize": 12 }
+    },
+    {
+      "key": "author",
+      "label": "Auteur",
+      "type": "text",
+      "placeholder": "Nom de l’auteur·e",
+      "defaultStyle": { "fontFamily": "ui-sans-serif", "fontSize": 14, "fontWeight": 800 }
+    },
+    {
+      "key": "authorFacts",
+      "label": "Auteur (infos / pastilles)",
+      "type": "tags",
+      "placeholder": "ex: réalisme, XXe siècle, journaliste…",
+      "defaultStyle": { "fontFamily": "ui-sans-serif", "fontSize": 11 }
+    },
+    {
+      "key": "toRead",
+      "label": "À lire",
+      "type": "list",
+      "placeholder": "Une œuvre/titre par ligne",
+      "defaultStyle": { "fontFamily": "ui-sans-serif", "fontSize": 12 }
+    }
+  ]
+}
+

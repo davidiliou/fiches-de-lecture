@@ -1,0 +1,15 @@
+{
+  "id": "f95c82a2-7e49-4900-b1a7-331d082bf435",
+  "title": "Nouvelle fiche",
+  "templateId": "sido-vrilles",
+  "createdAt": "2026-01-16T21:25:02.886Z",
+  "updatedAt": "2026-01-16T21:25:02.886Z",
+  "data": {},
+  "styles": {},
+  "theme": {
+    "primary": "#F59E0B",
+    "accent": "#FB923C",
+    "background": "#FFFBF5",
+    "text": "#1F2937"
+  }
+}
